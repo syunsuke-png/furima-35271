@@ -2,23 +2,21 @@
 
 ## users テーブル
 
-| Column           | Type   | Options     |
-| ---------------- | ------ | ----------- |
-| nickname         | string | null: false |
-| email            | string | null: false |
-| password         | string | null: false |
-| family_name      | string | null: false |
-| first_name       | string | null: false |
-| family_name_kana | string | null: false |
-| first_name_kana  | string | null: false |
-| birth_day        | string | null: false |
-| birth_day        | string | null: false |
-| berth_day        | string | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| family_name        | string | null: false |
+| first_name         | string | null: false |
+| family_name_kana   | string | null: false |
+| first_name_kana    | string | null: false |
+| barth_day          | date   | null: false |
 
 ### Association
 
 - has_many :item
-- has_one :card
+- has_one :purchase
 - has_one :address
 
 ## items テーブル
@@ -27,28 +25,20 @@
  | ----------- | ---------- | ------------------------------ |
  | item_name   | string     | null: false                    |
  | description | string     | null: false                    |
- | category    | string     | null: false                    |
- | status      | string     | null: false                    |
+ | category_id | integer    | null: false                    |
+ | status_id   | integer    | null: false                    |
  | judgment    | string     | null: false                    |
- | area        | string     | null: false                    |
- | days        | string     | null: false                    |
- | cost        | string     | null: false                    |
+ | area_id     | integer    | null: false                    |
+ | days_id     | integer    | null: false                    |
+ | cost_id     | integer    | null: false                    |
  | user        | references | null: false, foreign_key: true |
+
+ 画像はActiveStorageを用いて実装
 
  ### Association
 
  - belongs_to :user
- - has_many :image
-
- ## image
-
- | Column | Type       | Options                        |
- | ------ | ---------- | ------------------------------ |
- | image  | string     | null: false                    |
- | item   | references | null: false, foreign_key: true |
-
- ### Association
- - belongs_to :item
+ - has_one :purchase
 
  ## addresses
 
@@ -66,13 +56,14 @@
 
  - belongs_to :user
 
- ## card
+ ## purchases
 
  | Column  | Type       | Options                        |
  | ------- | ---------- | ------------------------------ |
- | card_id | string     | null: false                    |
+ | item    | references | null: false, foreign_key: true |
  | user    | references | null: false, foreign_key: true |
 
  ### Association
 
  - belongs_to :user
+ - belongs_to :item
