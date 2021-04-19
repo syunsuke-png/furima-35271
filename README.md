@@ -2,7 +2,6 @@
 
 ## users テーブル
 
-
 | Column             | Type   | Options      |            |
 | ------------------ | ------ | -----------  |            |
 | nickname           | string | null: false  |            |
