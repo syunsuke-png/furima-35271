@@ -65,11 +65,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
-    it 'ユーザーの本名は名字, 名前がないと登録できない' do
+    it 'ユーザーの本名は名字がないと登録できない' do
       @user.family_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include 'Family name is invalid'
+    end
+    it 'ユーザーの本名は名前がないと登録できない' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include 'Family name is invalid', 'First name is invalid'
+      expect(@user.errors.full_messages).to include "First name is invalid"
     end
     it 'family_nameは全角入力でないと登録できない' do
       @user.family_name = 'test'
@@ -81,11 +85,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include 'First name is invalid'
     end
-    it 'ユーザーのふりがなは名字, 名前がないと登録できない' do
+    it 'ユーザーのふりがなは名字がないと登録できない' do
       @user.family_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include 'Family name kana is invalid'
+    end
+    it 'ユーザーのふりがなは名前がないと登録できない' do
       @user.first_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include 'Family name kana is invalid', 'First name kana is invalid'
+      expect(@user.errors.full_messages).to include 'First name kana is invalid'
     end
     it 'family_name_kanaはカタカナでないと登録できない' do
       @user.family_name_kana = 'あいうえお'
