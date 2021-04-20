@@ -3,9 +3,10 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :item_name
     validates :description
-    validates :cost
     validates :image
   end
+  VALID_PRICEL_HALF = /\A[0-9]+\z/
+    validates :cost,  presence: true, format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than: 300, less_than: 10000000 }
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
