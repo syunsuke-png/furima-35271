@@ -77,6 +77,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Cost must be less than 10000000"
       end
+      it '金額は半角英語だけでは登録できないこと' do
+        @item.cost = 'aaaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Cost is not a number"
+      end
+      it '金額は半角英数混合では登録できないこと' do
+        @item.cost = 'aaa111'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Cost is not a number"
+      end
     end
   end
 end
