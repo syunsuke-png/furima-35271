@@ -1,4 +1,26 @@
 class Item < ApplicationRecord
+
+  with_options presence: true do
+    validates :item_name
+    validates :description
+    validates :cost
+    validates :image
+  end
+
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :judgment_id
+    validates :area_id
+    validates :days_id
+  end
+
   belongs_to :user
   has_one_attached :image
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :area
+  belongs_to :category
+  belongs_to :days
+  belongs_to :judgment
+  belongs_to :status
 end
