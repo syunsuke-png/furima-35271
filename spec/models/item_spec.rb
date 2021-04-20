@@ -28,27 +28,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Description can't be blank"
       end
       it 'category_idが1では出品できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Category must be other than 1"
       end
       it 'status_idが1では出品できない' do
-        @item.status_id = '1'
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Status must be other than 1"
       end
       it 'judgment_idが1では出品できない' do
-        @item.judgment_id = '1'
+        @item.judgment_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Judgment must be other than 1"
       end
       it 'area_idが1では出品できない' do
-        @item.area_id = '1'
+        @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Area must be other than 1"
       end
       it 'days_idが1では出品できない' do
-        @item.days_id = '1'
+        @item.days_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Days must be other than 1"
       end
@@ -68,12 +68,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "User must exist"
       end
       it '販売価格が299以下では出品できない' do
-        @item.cost = '299'
+        @item.cost = 299
         @item.valid?
         expect(@item.errors.full_messages).to include "Cost must be greater than 299"
       end
       it '販売価格が1000000以上では出品できない' do
-        @item.cost = '10000000'
+        @item.cost = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include "Cost must be less than 10000000"
       end
