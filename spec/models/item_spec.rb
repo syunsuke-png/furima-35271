@@ -30,27 +30,27 @@ RSpec.describe Item, type: :model do
       it 'category_idが1では出品できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Category must be other than 1"
+        expect(@item.errors.full_messages).to include 'Category must be other than 1'
       end
       it 'status_idが1では出品できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Status must be other than 1"
+        expect(@item.errors.full_messages).to include 'Status must be other than 1'
       end
       it 'judgment_idが1では出品できない' do
         @item.judgment_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Judgment must be other than 1"
+        expect(@item.errors.full_messages).to include 'Judgment must be other than 1'
       end
       it 'area_idが1では出品できない' do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Area must be other than 1"
+        expect(@item.errors.full_messages).to include 'Area must be other than 1'
       end
       it 'days_idが1では出品できない' do
         @item.days_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Days must be other than 1"
+        expect(@item.errors.full_messages).to include 'Days must be other than 1'
       end
       it 'costが空では出品できない' do
         @item.cost = ''
@@ -60,32 +60,32 @@ RSpec.describe Item, type: :model do
       it 'costが全角数字だと出品できない' do
         @item.cost = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Cost is not a number"
+        expect(@item.errors.full_messages).to include 'Cost is not a number'
       end
       it 'userが紐付いていないと保存できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
       it '販売価格が299以下では出品できない' do
         @item.cost = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include "Cost must be greater than 299"
+        expect(@item.errors.full_messages).to include 'Cost must be greater than 299'
       end
       it '販売価格が1000000以上では出品できない' do
-        @item.cost = 10000000
+        @item.cost = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Cost must be less than 10000000"
+        expect(@item.errors.full_messages).to include 'Cost must be less than 10000000'
       end
       it '金額は半角英語だけでは登録できないこと' do
         @item.cost = 'aaaaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Cost is not a number"
+        expect(@item.errors.full_messages).to include 'Cost is not a number'
       end
       it '金額は半角英数混合では登録できないこと' do
         @item.cost = 'aaa111'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Cost is not a number"
+        expect(@item.errors.full_messages).to include 'Cost is not a number'
       end
     end
   end
