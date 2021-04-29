@@ -7,6 +7,7 @@ class PurchaseAddress
   with_options presence: true do
     validates :token
     validates :user_id
+    validates :item_id
     validates :post_code, format: {with: /\A\d{3}[-]\d{4}\z/ }
     validates :city
     validates :address
