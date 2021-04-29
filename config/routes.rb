@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: "items#index"
-  resources :items
+  resources :items do
+    resources :purchases, only:[:index, :create]
+  end
   devise_for :users
 end
