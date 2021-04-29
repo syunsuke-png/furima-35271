@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :purchase_id, :post_code, :area_id, :city, :address, :building_name, :phone_number, :token
+  attr_accessor :item_id, :user_id, :post_code, :area_id, :city, :address, :building_name, :phone_number, :token
 
   validates :area_id, numericality: { other_than: 1 }
 
